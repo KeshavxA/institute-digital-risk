@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Insights & Research | Institute of Digital Risk</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="index.css">
+    <link rel="stylesheet" href="blog.css">
+</head>
+
+<body>
+    <header id="header" class="scrolled">
+        <nav class="container">
+            <div class="logo">
+                <a href="index.html">
+                    <img src="assets/branding/logo_full.png" alt="Institute of Digital Risk Logo" id="nav-logo">
+                </a>
+            </div>
+            <ul class="nav-links">
+                <li><a href="index.html#about">About</a></li>
+                <li><a href="index.html#services">Services</a></li>
+                <li><a href="blog.html" class="active" style="color: var(--primary);">Insights</a></li>
+                <li><a href="index.html#community">Community</a></li>
+            </ul>
+            <div class="nav-actions">
+                <a href="login.html" class="btn btn-secondary nav-cta" style="margin-right: 1rem; margin-left: 0;">Login</a>
+                <a href="index.html#contact" class="btn btn-primary nav-cta">Get Started</a>
+            </div>
+        </nav>
+    </header>
+
+    <main class="blog-main">
+        <section class="blog-hero">
+            <div class="container text-center">
+                <h1 class="fade-in">Insights & <span class="highlight">Research</span></h1>
+                <p class="fade-in-delay section-desc" style="margin: 0 auto;">Discover the latest thought leadership, academic research, and industry case studies from the Institute of Digital Risk.</p>
+            </div>
+        </section>
+
+        <section class="blog-grid-section">
+            <div class="container">
+                <div class="grid-3 card-container" id="blog-grid">
+                    <!-- Blog cards will be dynamically injected here by blog.js -->
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container footer-content">
+            <div class="footer-brand">
+                <img src="assets/branding/logo_full.png" alt="IDR Logo" class="footer-logo">
+                <p>&copy; 2026 Institute of Digital Risk. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="blog.js"></script>
+</body>
+</html>

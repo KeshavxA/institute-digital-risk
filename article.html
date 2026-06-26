@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Article | Institute of Digital Risk</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="index.css">
+    <link rel="stylesheet" href="blog.css">
+    <!-- Marked.js for parsing markdown -->
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+</head>
+
+<body>
+    <header id="header" class="scrolled">
+        <nav class="container">
+            <div class="logo">
+                <a href="index.html">
+                    <img src="assets/branding/logo_full.png" alt="Institute of Digital Risk Logo" id="nav-logo">
+                </a>
+            </div>
+            <ul class="nav-links">
+                <li><a href="index.html#about">About</a></li>
+                <li><a href="index.html#services">Services</a></li>
+                <li><a href="blog.html" class="active" style="color: var(--primary);">Insights</a></li>
+                <li><a href="index.html#community">Community</a></li>
+            </ul>
+            <div class="nav-actions">
+                <a href="blog.html" class="btn btn-secondary nav-cta" style="margin-right: 1rem; margin-left: 0;">&larr; Back to Insights</a>
+            </div>
+        </nav>
+    </header>
+
+    <main class="article-main">
+        <div class="container article-container">
+            <!-- Article Header Info injected here -->
+            <div id="article-header" class="article-header text-center"></div>
+            
+            <!-- Rendered Markdown goes here -->
+            <article id="article-content" class="markdown-body">
+                <div style="text-align: center; padding: 4rem;">
+                    <p style="font-size: 1.5rem;">Loading article...</p>
+                </div>
+            </article>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="container footer-content">
+            <div class="footer-brand">
+                <img src="assets/branding/logo_full.png" alt="IDR Logo" class="footer-logo">
+                <p>&copy; 2026 Institute of Digital Risk. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="blog.js"></script>
+</body>
+</html>
