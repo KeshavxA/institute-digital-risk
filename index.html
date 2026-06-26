@@ -28,6 +28,7 @@
             <ul class="nav-links">
                 <li><a href="#about">About</a></li>
                 <li><a href="#services">Services</a></li>
+                <li><a href="#courses">Courses</a></li>
                 <li><a href="#community">Community</a></li>
                 <li><a href="#contact">Register</a></li>
             </ul>
@@ -106,6 +107,17 @@
         </section>
 
 
+        <section id="courses" class="courses-section">
+            <div class="container">
+                <h2 class="section-title text-center">Course Catalog</h2>
+                <p class="section-desc text-center" style="margin-bottom: 3rem;">Enroll in our industry-leading digital risk programs.</p>
+                <div id="course-grid" class="grid-3 card-container">
+                    <!-- Cards will be dynamically injected here by JS -->
+                </div>
+            </div>
+        </section>
+
+
         <section id="community" class="community-section">
             <div class="container text-center">
                 <h2 class="section-title">Our Community</h2>
@@ -172,6 +184,35 @@
             </div>
         </div>
     </footer>
+
+    <div id="syllabus-modal" class="modal-overlay hidden">
+        <div class="modal-content">
+            <button class="close-btn" aria-label="Close modal">&times;</button>
+            <h2 id="modal-syllabus-title">Course Syllabus</h2>
+            <div id="modal-syllabus-content" class="syllabus-content">
+            </div>
+        </div>
+    </div>
+
+    <div id="enrollment-modal" class="modal-overlay hidden">
+        <div class="modal-content">
+            <button class="close-btn" aria-label="Close modal">&times;</button>
+            <h2>Enroll Now</h2>
+            <p id="modal-enroll-course-title" class="highlight" style="margin-bottom: 1.5rem;"></p>
+            <form id="course-enrollment-form" class="contact-form" style="padding: 0; background: transparent; border: none;">
+                <input type="hidden" id="enroll-course-id" name="course_id">
+                <div class="form-group">
+                    <label for="enroll-name">Full Name</label>
+                    <input type="text" id="enroll-name" name="name" placeholder="Enter your name" required>
+                </div>
+                <div class="form-group">
+                    <label for="enroll-email">Email Address</label>
+                    <input type="email" id="enroll-email" name="email" placeholder="example@idr.com" required>
+                </div>
+                <button type="submit" class="btn btn-primary btn-block">Confirm Enrollment</button>
+            </form>
+        </div>
+    </div>
 
     <script src="index.js"></script>
 </body>
