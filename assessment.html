@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Digital Risk Assessment | Institute of Digital Risk</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="index.css">
+    <link rel="stylesheet" href="assessment.css">
+</head>
+
+<body class="assessment-body">
+
+    <header class="assessment-header">
+        <div class="container" style="display: flex; justify-content: space-between; align-items: center; padding-top: 1.5rem; padding-bottom: 1.5rem;">
+            <a href="index.html">
+                <img src="assets/branding/logo_full.png" alt="IDR Logo" style="height: 40px;">
+            </a>
+            <a href="index.html" style="color: var(--text-gray); text-decoration: none; font-weight: 500;">&larr; Back to Home</a>
+        </div>
+    </header>
+
+    <main class="assessment-main">
+        <div class="assessment-container">
+            
+            <!-- Progress Bar -->
+            <div class="progress-container" id="progress-container">
+                <div class="progress-bar-assessment">
+                    <div class="progress-fill-assessment" id="progress-fill"></div>
+                </div>
+                <div class="step-indicator">Step <span id="current-step-num">1</span> of <span id="total-steps-num">4</span></div>
+            </div>
+
+            <form id="assessment-form">
+                
+                <!-- Intro Step -->
+                <div class="step active" id="step-intro">
+                    <div class="step-content text-center">
+                        <div style="font-size: 4rem; margin-bottom: 1rem;">🛡️</div>
+                        <h2>Free Digital Risk Assessment</h2>
+                        <p style="margin-bottom: 2rem; font-size: 1.1rem;">Discover your organization's digital risk maturity level in less than 2 minutes. Receive a customized risk score and tailored recommendations.</p>
+                        <button type="button" class="btn btn-primary btn-next">Start Assessment</button>
+                    </div>
+                </div>
+
+                <!-- Question 1 -->
+                <div class="step" id="step-1">
+                    <div class="step-content">
+                        <h2>1. How often do you conduct comprehensive vulnerability assessments?</h2>
+                        <div class="options-grid">
+                            <label class="option-card">
+                                <input type="radio" name="q1" value="0">
+                                <div class="option-inner">
+                                    <h4>Rarely or Never</h4>
+                                    <p>We do not have a regular schedule.</p>
+                                </div>
+                            </label>
+                            <label class="option-card">
+                                <input type="radio" name="q1" value="3">
+                                <div class="option-inner">
+                                    <h4>Annually</h4>
+                                    <p>Once a year, typically for compliance.</p>
+                                </div>
+                            </label>
+                            <label class="option-card">
+                                <input type="radio" name="q1" value="7">
+                                <div class="option-inner">
+                                    <h4>Quarterly or Monthly</h4>
+                                    <p>We proactively scan on a regular basis.</p>
+                                </div>
+                            </label>
+                            <label class="option-card">
+                                <input type="radio" name="q1" value="10">
+                                <div class="option-inner">
+                                    <h4>Continuous</h4>
+                                    <p>We have automated, real-time monitoring.</p>
+                                </div>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Question 2 -->
+                <div class="step" id="step-2">
+                    <div class="step-content">
+                        <h2>2. Does your organization have a dedicated CISO or equivalent risk leader?</h2>
+                        <div class="options-grid">
+                            <label class="option-card">
+                                <input type="radio" name="q2" value="0">
+                                <div class="option-inner">
+                                    <h4>No</h4>
+                                    <p>IT handles security alongside other duties.</p>
+                                </div>
+                            </label>
+                            <label class="option-card">
+                                <input type="radio" name="q2" value="5">
+                                <div class="option-inner">
+                                    <h4>Partially</h4>
+                                    <p>We have an external consultant or shared role.</p>
+                                </div>
+                            </label>
+                            <label class="option-card">
+                                <input type="radio" name="q2" value="10">
+                                <div class="option-inner">
+                                    <h4>Yes</h4>
+                                    <p>We have a dedicated internal leader.</p>
+                                </div>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Question 3 -->
+                <div class="step" id="step-3">
+                    <div class="step-content">
+                        <h2>3. How is cyber awareness training handled for employees?</h2>
+                        <div class="options-grid">
+                            <label class="option-card">
+                                <input type="radio" name="q3" value="0">
+                                <div class="option-inner">
+                                    <h4>None</h4>
+                                    <p>We do not provide formal training.</p>
+                                </div>
+                            </label>
+                            <label class="option-card">
+                                <input type="radio" name="q3" value="4">
+                                <div class="option-inner">
+                                    <h4>Onboarding Only</h4>
+                                    <p>Basic training when they join.</p>
+                                </div>
+                            </label>
+                            <label class="option-card">
+                                <input type="radio" name="q3" value="10">
+                                <div class="option-inner">
+                                    <h4>Regular & Tested</h4>
+                                    <p>Frequent training with simulated phishing tests.</p>
+                                </div>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Question 4 -->
+                <div class="step" id="step-4">
+                    <div class="step-content">
+                        <h2>4. How resilient is your incident response plan?</h2>
+                        <div class="options-grid">
+                            <label class="option-card">
+                                <input type="radio" name="q4" value="0">
+                                <div class="option-inner">
+                                    <h4>No Plan</h4>
+                                    <p>We'd figure it out if it happens.</p>
+                                </div>
+                            </label>
+                            <label class="option-card">
+                                <input type="radio" name="q4" value="5">
+                                <div class="option-inner">
+                                    <h4>Documented but Untested</h4>
+                                    <p>We have a plan but rarely test it.</p>
+                                </div>
+                            </label>
+                            <label class="option-card">
+                                <input type="radio" name="q4" value="10">
+                                <div class="option-inner">
+                                    <h4>Fully Tested</h4>
+                                    <p>Regular tabletop exercises and updates.</p>
+                                </div>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Results Step -->
+                <div class="step" id="step-results">
+                    <div class="step-content text-center">
+                        <h2 style="margin-bottom: 2rem;">Your Digital Risk Assessment</h2>
+                        
+                        <div class="score-container">
+                            <div class="score-circle" id="score-circle">
+                                <span id="score-text">0</span>
+                            </div>
+                        </div>
+                        
+                        <h3 id="risk-tier" style="margin-top: 1.5rem; font-size: 2rem;">Calculating...</h3>
+                        <p id="risk-description" style="margin-bottom: 2.5rem; max-width: 600px; margin-left: auto; margin-right: auto;"></p>
+                        
+                        <div style="background: rgba(255,107,0,0.05); border: 1px solid rgba(255,107,0,0.2); padding: 2rem; border-radius: 8px; max-width: 600px; margin: 0 auto;">
+                            <h4 style="margin-bottom: 1rem; color: var(--primary);">Recommended Next Step</h4>
+                            <p style="margin-bottom: 1.5rem; font-size: 0.95rem;">Speak with an IDR Advisory Consultant to discuss these results and build a tailored resilience roadmap.</p>
+                            <a href="index.html#contact" class="btn btn-primary">Contact Advisory Services</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Navigation Buttons -->
+                <div class="step-actions" id="step-actions" style="display: none;">
+                    <button type="button" class="btn btn-secondary" id="btn-prev" style="margin-left: 0;">Previous</button>
+                    <button type="button" class="btn btn-primary" id="btn-next">Next Question</button>
+                    <button type="button" class="btn btn-primary" id="btn-submit" style="display: none;">See Results</button>
+                </div>
+            </form>
+        </div>
+    </main>
+
+    <script src="assessment.js"></script>
+</body>
+</html>
