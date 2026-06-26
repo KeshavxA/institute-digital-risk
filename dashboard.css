@@ -1,0 +1,249 @@
+/* Dashboard Layout */
+body.dashboard-body {
+    background-color: var(--black);
+    color: var(--text-white);
+    display: flex;
+    height: 100vh;
+    overflow: hidden;
+}
+
+/* Sidebar */
+.dashboard-sidebar {
+    width: 280px;
+    background: var(--black-light);
+    border-right: 1px solid var(--glass-border);
+    display: flex;
+    flex-direction: column;
+    padding: 2rem 0;
+    transition: var(--transition);
+}
+
+.sidebar-logo {
+    padding: 0 2rem;
+    margin-bottom: 3rem;
+}
+
+.sidebar-logo img {
+    height: 40px;
+}
+
+.sidebar-nav {
+    list-style: none;
+    flex-grow: 1;
+}
+
+.sidebar-nav li {
+    margin-bottom: 0.5rem;
+}
+
+.sidebar-nav a {
+    display: flex;
+    align-items: center;
+    padding: 1rem 2rem;
+    color: var(--text-gray);
+    text-decoration: none;
+    font-weight: 500;
+    transition: var(--transition);
+    border-left: 3px solid transparent;
+}
+
+.sidebar-nav a:hover, .sidebar-nav a.active {
+    color: var(--white);
+    background: rgba(255, 107, 0, 0.05);
+    border-left-color: var(--primary);
+}
+
+.sidebar-nav .icon {
+    margin-right: 1rem;
+    font-size: 1.2rem;
+}
+
+.sidebar-footer {
+    padding: 2rem;
+    border-top: 1px solid var(--glass-border);
+}
+
+.user-profile {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: var(--primary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    color: var(--white);
+}
+
+.user-info h4 {
+    margin: 0;
+    font-size: 0.9rem;
+}
+
+.user-info p {
+    margin: 0;
+    font-size: 0.8rem;
+    color: var(--text-gray);
+}
+
+/* Main Content */
+.dashboard-main {
+    flex-grow: 1;
+    overflow-y: auto;
+    background-image:
+        radial-gradient(at 100% 0%, rgba(255, 107, 0, 0.03) 0px, transparent 50%);
+}
+
+.dashboard-header {
+    padding: 2rem 3rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid var(--glass-border);
+    background: rgba(11, 11, 11, 0.8);
+    backdrop-filter: blur(10px);
+    position: sticky;
+    top: 0;
+    z-index: 10;
+}
+
+.dashboard-header h1 {
+    font-size: 1.8rem;
+    margin: 0;
+}
+
+.tab-content {
+    display: none;
+    padding: 3rem;
+    animation: fadeIn 0.4s ease forwards;
+}
+
+.tab-content.active {
+    display: block;
+}
+
+/* Dashboard Cards */
+.dash-card {
+    background: var(--black-light);
+    border: 1px solid var(--glass-border);
+    border-radius: 8px;
+    padding: 2rem;
+}
+
+.dash-grid-2 {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2rem;
+}
+
+.dash-grid-3 {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+    margin-bottom: 3rem;
+}
+
+.stat-card {
+    text-align: center;
+}
+
+.stat-card .value {
+    font-size: 3rem;
+    font-weight: 700;
+    color: var(--primary);
+    margin: 0.5rem 0;
+}
+
+/* Progress Bar */
+.progress-wrapper {
+    margin-top: 1.5rem;
+    margin-bottom: 1.5rem;
+}
+
+.progress-header {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.85rem;
+    margin-bottom: 0.5rem;
+    color: var(--text-gray);
+}
+
+.progress-bar {
+    width: 100%;
+    height: 8px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+.progress-fill {
+    height: 100%;
+    background: var(--primary);
+    border-radius: 4px;
+    transition: width 1s ease-out;
+}
+
+/* Resource List */
+.resource-list {
+    list-style: none;
+}
+
+.resource-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.5rem;
+    border-bottom: 1px solid var(--glass-border);
+    transition: var(--transition);
+}
+
+.resource-item:hover {
+    background: rgba(255, 255, 255, 0.02);
+}
+
+.resource-item:last-child {
+    border-bottom: none;
+}
+
+.resource-info h4 {
+    margin-bottom: 0.25rem;
+}
+
+.resource-info p {
+    margin: 0;
+    font-size: 0.85rem;
+}
+
+/* Certifications */
+.cert-card {
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.cert-icon {
+    font-size: 4rem;
+    margin-bottom: 1rem;
+    display: inline-block;
+    filter: drop-shadow(0 0 15px rgba(255, 215, 0, 0.3));
+}
+
+.cert-locked {
+    opacity: 0.5;
+    filter: grayscale(1);
+}
+
+.cert-locked::after {
+    content: '🔒';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 2rem;
+}
