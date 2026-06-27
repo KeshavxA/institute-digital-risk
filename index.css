@@ -513,6 +513,13 @@ section {
     font-size: 4rem;
     font-weight: 700;
     color: var(--primary);
+    display: inline-block;
+}
+
+.stat-plus {
+    font-size: 4rem;
+    font-weight: 700;
+    color: var(--primary);
 }
 
 .stat-label {
@@ -727,5 +734,66 @@ section {
 
     section {
         padding: 6rem 0;
+    }
+}
+
+/* Floating Shapes & Parallax */
+.hero-section, .about-section, .community-section {
+    position: relative;
+    overflow: hidden;
+}
+
+.shape {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(60px);
+    z-index: 0;
+    opacity: 0.4;
+    animation: float-shape 10s ease-in-out infinite alternate;
+}
+
+.shape-1 {
+    width: 300px;
+    height: 300px;
+    background: var(--primary);
+    top: 10%;
+    left: -5%;
+}
+
+.shape-2 {
+    width: 250px;
+    height: 250px;
+    background: rgba(255, 255, 255, 0.1);
+    bottom: -10%;
+    right: 10%;
+    animation-delay: -3s;
+}
+
+.shape-3 {
+    width: 400px;
+    height: 400px;
+    background: var(--primary-dark);
+    top: 30%;
+    right: -15%;
+    opacity: 0.2;
+    animation-duration: 15s;
+}
+
+.shape-4 {
+    width: 350px;
+    height: 350px;
+    background: var(--primary);
+    bottom: 0%;
+    left: 10%;
+    opacity: 0.15;
+    animation-delay: -5s;
+}
+
+@keyframes float-shape {
+    0% {
+        transform: translate(0, 0) scale(1);
+    }
+    100% {
+        transform: translate(20px, -40px) scale(1.1);
     }
 }

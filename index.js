@@ -5,11 +5,24 @@ document.addEventListener('DOMContentLoaded', () => {
     const registrationForm = document.getElementById('registration-form');
 
     const handleScroll = () => {
-        if (window.scrollY > 50) {
+        const scrollY = window.scrollY;
+        
+        // Header styling
+        if (scrollY > 50) {
             header.classList.add('scrolled');
         } else {
             header.classList.remove('scrolled');
         }
+
+        // Parallax effect for shapes
+        document.querySelectorAll('.shape').forEach(shape => {
+            const speed = shape.getAttribute('data-speed');
+            if (speed) {
+                const yPos = -(scrollY * speed / 10);
+                // Keep the original float animation but add a transform overlay
+                shape.style.transform = `translateY(${yPos}px)`;
+            }
+        });
     };
     window.addEventListener('scroll', handleScroll);
     handleScroll();
@@ -238,4 +251,40 @@ document.addEventListener('DOMContentLoaded', () => {
         el.classList.add('reveal');
         observer.observe(el);
     });
+
+    // Dynamic Counter Animation
+    const statsObserverOptions = {
+        threshold: 0.5
+    };
+
+    const runCounter = (el) => {
+        const target = parseInt(el.getAttribute('data-target'));
+        const duration = 2000; // 2 seconds
+        const stepTime = Math.abs(Math.floor(duration / target));
+        let current = 0;
+
+        const timer = setInterval(() => {
+            current += 1;
+            el.textContent = current;
+            if (current >= target) {
+                el.textContent = target;
+                clearInterval(timer);
+            }
+        }, stepTime > 0 ? stepTime : 10);
+    };
+
+    const statsObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                const statNumbers = entry.target.querySelectorAll('.stat-number');
+                statNumbers.forEach(stat => runCounter(stat));
+                statsObserver.unobserve(entry.target);
+            }
+        });
+    }, statsObserverOptions);
+
+    const communitySection = document.getElementById('community');
+    if (communitySection) {
+        statsObserver.observe(communitySection);
+    }
 });
