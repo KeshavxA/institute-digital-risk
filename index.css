@@ -14,6 +14,41 @@
     --glass-border: rgba(255, 255, 255, 0.1);
 }
 
+:root.light-mode {
+    --black: #F8F9FA;
+    --black-light: #FFFFFF;
+    --white: #0B0B0B;
+    --gray-light: #1A1A1A;
+    --text-white: #111111;
+    --text-gray: #4A4A4A;
+    --glass: rgba(0, 0, 0, 0.03);
+    --glass-border: rgba(0, 0, 0, 0.1);
+}
+
+/* Theme Toggle Button */
+.theme-toggle {
+    background: transparent;
+    border: 1px solid var(--glass-border);
+    color: var(--text-white);
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    font-size: 1.2rem;
+    transition: var(--transition);
+    margin-right: 1.5rem;
+}
+
+.theme-toggle:hover {
+    background: var(--glass);
+    border-color: var(--primary);
+    color: var(--primary);
+    transform: rotate(15deg);
+}
+
 ::-webkit-scrollbar {
     width: 10px;
 }
