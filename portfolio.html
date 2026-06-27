@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Innovation Portfolio | Institute of Digital Risk</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="index.css">
+    <link rel="stylesheet" href="portfolio.css">
+</head>
+
+<body>
+    <header id="header" class="scrolled">
+        <nav class="container">
+            <div class="logo">
+                <a href="index.html">
+                    <img src="assets/branding/logo_full.png" alt="Institute of Digital Risk Logo" id="nav-logo">
+                </a>
+            </div>
+            <ul class="nav-links">
+                <li><a href="index.html#about">About</a></li>
+                <li><a href="index.html#services">Services</a></li>
+                <li><a href="index.html#courses">Courses</a></li>
+                <li><a href="blog.html">Insights</a></li>
+                <li><a href="events.html">Events</a></li>
+                <li><a href="portfolio.html" class="active" style="color: var(--primary);">Innovation</a></li>
+                <li><a href="index.html#community">Community</a></li>
+            </ul>
+            <div class="nav-actions">
+                <a href="login.html" class="btn btn-secondary nav-cta" style="margin-right: 1rem; margin-left: 0;">Login</a>
+                <a href="index.html#contact" class="btn btn-primary nav-cta">Get Started</a>
+            </div>
+        </nav>
+    </header>
+
+    <main class="portfolio-main">
+        <section class="portfolio-hero">
+            <div class="container text-center">
+                <h1 class="fade-in">Innovation <span class="highlight">Portfolio</span></h1>
+                <p class="fade-in-delay section-desc" style="margin: 0 auto; max-width: 700px;">Explore the 50+ cutting-edge startups, risk-tech products, and frameworks incubated within our ecosystem.</p>
+            </div>
+        </section>
+
+        <section class="portfolio-grid-section">
+            <div class="container">
+                <!-- Filters -->
+                <div class="portfolio-filters" id="portfolio-filters">
+                    <button class="filter-btn active" data-filter="All">All Projects</button>
+                    <button class="filter-btn" data-filter="AI Security">AI Security</button>
+                    <button class="filter-btn" data-filter="RegTech">RegTech</button>
+                    <button class="filter-btn" data-filter="Data Privacy">Data Privacy</button>
+                    <button class="filter-btn" data-filter="Quantum Defenses">Quantum Defenses</button>
+                </div>
+
+                <!-- Grid -->
+                <div class="grid-3" id="portfolio-grid">
+                    <!-- Portfolio cards will be dynamically injected here by portfolio.js -->
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container footer-content">
+            <div class="footer-brand">
+                <img src="assets/branding/logo_full.png" alt="IDR Logo" class="footer-logo">
+                <p>&copy; 2026 Institute of Digital Risk. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Project Detail Modal -->
+    <div id="project-modal" class="modal-overlay hidden">
+        <div class="modal-content" style="max-width: 700px;">
+            <button class="close-btn" aria-label="Close modal">&times;</button>
+            <div class="modal-project-header">
+                <div class="project-icon" id="modal-icon"></div>
+                <div>
+                    <h2 id="modal-title" style="margin-bottom: 0.25rem;">Project Title</h2>
+                    <span id="modal-category" class="project-category" style="margin-bottom: 0;">Category</span>
+                </div>
+            </div>
+            
+            <div class="project-meta-grid">
+                <div>
+                    <span class="meta-label">Founded</span>
+                    <strong id="modal-founded">2024</strong>
+                </div>
+                <div>
+                    <span class="meta-label">Status</span>
+                    <strong id="modal-status">Seed Funded</strong>
+                </div>
+                <div>
+                    <span class="meta-label">Lead</span>
+                    <strong id="modal-lead">Dr. Jane Smith</strong>
+                </div>
+            </div>
+
+            <div class="project-description" id="modal-description">
+                <!-- Full description injected here -->
+            </div>
+            
+            <div style="margin-top: 2rem; text-align: center;">
+                <button class="btn btn-primary" id="btn-visit-project">Visit Project Website</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="portfolio.js"></script>
+</body>
+</html>
