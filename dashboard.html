@@ -27,6 +27,7 @@
         <ul class="sidebar-nav">
             <li><a href="#overview" class="active"><span class="icon">📊</span> Overview</a></li>
             <li><a href="#courses"><span class="icon">📚</span> My Courses</a></li>
+            <li><a href="#forum"><span class="icon">💬</span> Community Forum</a></li>
             <li><a href="#resources"><span class="icon">📂</span> Resources</a></li>
             <li><a href="#certificates"><span class="icon">🎓</span> Certificates</a></li>
         </ul>
@@ -126,6 +127,31 @@
             </div>
         </div>
 
+        <!-- Forum Tab -->
+        <div id="forum" class="tab-content">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 2rem; flex-wrap: wrap; gap: 1rem;">
+                <h2>Community Forum</h2>
+                <button class="btn btn-primary" id="btn-new-topic" style="margin: 0;">+ New Topic</button>
+            </div>
+            
+            <div class="forum-filters">
+                <button class="filter-btn active" data-category="All">All Topics</button>
+                <button class="filter-btn" data-category="Cyber Trends">Cyber Trends</button>
+                <button class="filter-btn" data-category="Job Board">Job Board</button>
+                <button class="filter-btn" data-category="Introductions">Introductions</button>
+            </div>
+
+            <div class="forum-header">
+                <div class="f-col-main">Topic</div>
+                <div class="f-col-stat hide-mobile">Replies</div>
+                <div class="f-col-stat hide-mobile">Activity</div>
+            </div>
+
+            <div id="forum-threads-container">
+                <!-- Threads injected via JS -->
+            </div>
+        </div>
+
         <!-- Resources Tab -->
         <div id="resources" class="tab-content">
             <div class="dash-card">
@@ -178,6 +204,33 @@
         </div>
 
     </main>
+
+    <!-- New Topic Modal -->
+    <div id="new-topic-modal" class="modal-overlay hidden">
+        <div class="modal-content">
+            <button class="close-btn" aria-label="Close modal">&times;</button>
+            <h2>Create New Topic</h2>
+            <form id="new-topic-form" class="contact-form" style="padding: 0; background: transparent; border: none; margin-top: 1.5rem;">
+                <div class="form-group">
+                    <label for="topic-title">Title</label>
+                    <input type="text" id="topic-title" required placeholder="What is this discussion about?">
+                </div>
+                <div class="form-group">
+                    <label for="topic-category">Category</label>
+                    <select id="topic-category" required style="width: 100%; padding: 1rem; border-radius: 4px; border: 1px solid var(--glass-border); background: var(--black-light); color: var(--text-white); font-family: inherit;">
+                        <option value="Cyber Trends">Cyber Trends</option>
+                        <option value="Job Board">Job Board</option>
+                        <option value="Introductions">Introductions</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="topic-message">Message</label>
+                    <textarea id="topic-message" rows="4" required placeholder="Share your thoughts..."></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary btn-block">Post Topic</button>
+            </form>
+        </div>
+    </div>
 
     <script src="dashboard.js"></script>
 </body>
