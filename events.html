@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Events & Webinars | Institute of Digital Risk</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="index.css">
+    <link rel="stylesheet" href="events.css">
+</head>
+
+<body>
+    <header id="header" class="scrolled">
+        <nav class="container">
+            <div class="logo">
+                <a href="index.html">
+                    <img src="assets/branding/logo_full.png" alt="Institute of Digital Risk Logo" id="nav-logo">
+                </a>
+            </div>
+            <ul class="nav-links">
+                <li><a href="index.html#about">About</a></li>
+                <li><a href="index.html#services">Services</a></li>
+                <li><a href="index.html#courses">Courses</a></li>
+                <li><a href="blog.html">Insights</a></li>
+                <li><a href="events.html" class="active" style="color: var(--primary);">Events</a></li>
+                <li><a href="index.html#community">Community</a></li>
+            </ul>
+            <div class="nav-actions">
+                <a href="login.html" class="btn btn-secondary nav-cta" style="margin-right: 1rem; margin-left: 0;">Login</a>
+                <a href="index.html#contact" class="btn btn-primary nav-cta">Get Started</a>
+            </div>
+        </nav>
+    </header>
+
+    <main class="events-main">
+        <section class="events-hero">
+            <div class="container text-center">
+                <h1 class="fade-in">Events & <span class="highlight">Webinars</span></h1>
+                <p class="fade-in-delay section-desc" style="margin: 0 auto; max-width: 700px;">Join our community of professionals for industry talks, training workshops, and incubation pitches. RSVP below to secure your spot.</p>
+            </div>
+        </section>
+
+        <section class="events-grid-section">
+            <div class="container">
+                <div class="grid-2" id="events-grid">
+                    <!-- Event cards will be dynamically injected here by events.js -->
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container footer-content">
+            <div class="footer-brand">
+                <img src="assets/branding/logo_full.png" alt="IDR Logo" class="footer-logo">
+                <p>&copy; 2026 Institute of Digital Risk. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- RSVP Modal -->
+    <div id="rsvp-modal" class="modal-overlay hidden">
+        <div class="modal-content">
+            <button class="close-btn" aria-label="Close modal">&times;</button>
+            <h2>RSVP for Event</h2>
+            <p id="modal-rsvp-event-title" class="highlight" style="margin-bottom: 1.5rem;"></p>
+            <form id="event-rsvp-form" class="contact-form" style="padding: 0; background: transparent; border: none;">
+                <input type="hidden" id="rsvp-event-id" name="event_id">
+                <div class="form-group">
+                    <label for="rsvp-name">Full Name</label>
+                    <input type="text" id="rsvp-name" name="name" placeholder="Enter your name" required>
+                </div>
+                <div class="form-group">
+                    <label for="rsvp-email">Email Address</label>
+                    <input type="email" id="rsvp-email" name="email" placeholder="example@idr.com" required>
+                </div>
+                <button type="submit" class="btn btn-primary btn-block">Confirm RSVP</button>
+            </form>
+        </div>
+    </div>
+
+    <script src="events.js"></script>
+</body>
+</html>
