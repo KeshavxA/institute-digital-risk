@@ -32,7 +32,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     if (registrationForm) {
-        registrationForm.addEventListener('submit', (e) => {
+        registrationForm.addEventListener('submit', async (e) => {
             e.preventDefault();
 
             const name = document.getElementById('name').value.trim();
@@ -56,19 +56,42 @@ document.addEventListener('DOMContentLoaded', () => {
             submitBtn.disabled = true;
             submitBtn.innerHTML = '<span>Processing...</span>';
 
-            setTimeout(() => {
-                submitBtn.textContent = 'Interest Registered! ✓';
-                submitBtn.style.backgroundColor = '#28a745';
-                submitBtn.style.boxShadow = '0 10px 20px rgba(40, 167, 69, 0.3)';
-                registrationForm.reset();
+            try {
+                const response = await fetch('http://localhost:3000/api/register', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        name: name,
+                        email: email,
+                        role: 'Member', // Defaulting for this form
+                        motivation: message
+                    })
+                });
 
+                if (response.ok) {
+                    submitBtn.textContent = 'Interest Registered! ✓';
+                    submitBtn.style.backgroundColor = '#28a745';
+                    submitBtn.style.boxShadow = '0 10px 20px rgba(40, 167, 69, 0.3)';
+                    registrationForm.reset();
+                } else {
+                    const errorData = await response.json();
+                    alert('Registration failed: ' + (errorData.error || 'Unknown error'));
+                    submitBtn.textContent = originalText;
+                }
+            } catch (error) {
+                console.error('Error submitting form:', error);
+                alert('Failed to connect to the server. Please try again later.');
+                submitBtn.textContent = originalText;
+            } finally {
                 setTimeout(() => {
                     submitBtn.disabled = false;
                     submitBtn.textContent = originalText;
                     submitBtn.style.backgroundColor = '';
                     submitBtn.style.boxShadow = '';
                 }, 4000);
-            }, 1800);
+            }
         });
     }
 
