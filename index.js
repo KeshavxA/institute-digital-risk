@@ -308,4 +308,63 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
     });
+    // Testimonial Carousel Logic
+    const track = document.getElementById('testimonial-track');
+    const prevBtn = document.querySelector('.prev-btn');
+    const nextBtn = document.querySelector('.next-btn');
+    const indicatorsContainer = document.getElementById('carousel-indicators');
+    
+    if (track && prevBtn && nextBtn && indicatorsContainer) {
+        const cards = Array.from(track.children);
+        let currentIndex = 0;
+
+        // Create dots
+        cards.forEach((_, index) => {
+            const dot = document.createElement('button');
+            dot.classList.add('carousel-dot');
+            if (index === 0) dot.classList.add('active');
+            dot.setAttribute('aria-label', `Go to slide ${index + 1}`);
+            dot.addEventListener('click', () => goToSlide(index));
+            indicatorsContainer.appendChild(dot);
+        });
+
+        const dots = Array.from(indicatorsContainer.children);
+
+        const updateCarousel = () => {
+            track.style.transform = `translateX(-${currentIndex * 100}%)`;
+            dots.forEach(dot => dot.classList.remove('active'));
+            dots[currentIndex].classList.add('active');
+        };
+
+        const goToSlide = (index) => {
+            currentIndex = index;
+            updateCarousel();
+        };
+
+        prevBtn.addEventListener('click', () => {
+            currentIndex = (currentIndex === 0) ? cards.length - 1 : currentIndex - 1;
+            updateCarousel();
+        });
+
+        nextBtn.addEventListener('click', () => {
+            currentIndex = (currentIndex === cards.length - 1) ? 0 : currentIndex + 1;
+            updateCarousel();
+        });
+        
+        // Optional auto-slide
+        let autoSlide = setInterval(() => {
+            currentIndex = (currentIndex === cards.length - 1) ? 0 : currentIndex + 1;
+            updateCarousel();
+        }, 5000);
+
+        // Pause on hover
+        const carouselContainer = document.querySelector('.carousel-container');
+        carouselContainer.addEventListener('mouseenter', () => clearInterval(autoSlide));
+        carouselContainer.addEventListener('mouseleave', () => {
+            autoSlide = setInterval(() => {
+                currentIndex = (currentIndex === cards.length - 1) ? 0 : currentIndex + 1;
+                updateCarousel();
+            }, 5000);
+        });
+    }
 });
