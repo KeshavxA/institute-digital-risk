@@ -44,6 +44,56 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
+    // Real-time Form Validation
+    const setupRealTimeValidation = (form) => {
+        if (!form) return;
+        
+        const inputs = form.querySelectorAll('input, textarea');
+        
+        inputs.forEach(input => {
+            // Create error message span if it doesn't exist
+            let errorSpan = input.parentNode.querySelector('.error-message');
+            if (!errorSpan) {
+                errorSpan = document.createElement('span');
+                errorSpan.className = 'error-message';
+                input.parentNode.appendChild(errorSpan);
+            }
+
+            const validateInput = () => {
+                const type = input.type;
+                const value = input.value.trim();
+                
+                input.classList.remove('valid', 'invalid');
+                
+                if (input.hasAttribute('required') && value === '') {
+                    input.classList.add('invalid');
+                    errorSpan.textContent = 'This field is required';
+                    return false;
+                }
+
+                if (type === 'email' && value !== '') {
+                    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                    if (!emailRegex.test(value)) {
+                        input.classList.add('invalid');
+                        errorSpan.textContent = 'Please enter a valid email address';
+                        return false;
+                    }
+                }
+                
+                // If it passes
+                if (value !== '') {
+                    input.classList.add('valid');
+                }
+                return true;
+            };
+
+            input.addEventListener('input', validateInput);
+            input.addEventListener('blur', validateInput);
+        });
+    };
+
+    document.querySelectorAll('.contact-form, .newsletter-form').forEach(form => setupRealTimeValidation(form));
+
     if (registrationForm) {
         registrationForm.addEventListener('submit', async (e) => {
             e.preventDefault();

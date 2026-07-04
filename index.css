@@ -715,6 +715,7 @@ section {
 
 .form-group {
     margin-bottom: 1.5rem;
+    position: relative;
 }
 
 .form-group label {
@@ -741,6 +742,37 @@ section {
     outline: none;
     border-color: var(--primary);
     background: rgba(255, 107, 0, 0.05);
+}
+
+/* Validation Styles */
+.form-group input.valid,
+.form-group textarea.valid,
+.newsletter-form input.valid {
+    border-color: #28a745;
+    background: rgba(40, 167, 69, 0.05);
+}
+
+.form-group input.invalid,
+.form-group textarea.invalid,
+.newsletter-form input.invalid {
+    border-color: #dc3545;
+    background: rgba(220, 53, 69, 0.05);
+}
+
+.error-message {
+    color: #dc3545;
+    font-size: 0.8rem;
+    position: absolute;
+    bottom: -1.2rem;
+    left: 0;
+    opacity: 0;
+    transition: opacity 0.2s ease;
+}
+
+.form-group input.invalid ~ .error-message,
+.form-group textarea.invalid ~ .error-message,
+.newsletter-form input.invalid ~ .error-message {
+    opacity: 1;
 }
 
 /* Footer */
@@ -795,6 +827,7 @@ section {
 .newsletter-form {
     display: flex;
     gap: 0.5rem;
+    position: relative;
 }
 
 .newsletter-form input {
