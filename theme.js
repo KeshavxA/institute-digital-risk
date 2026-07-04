@@ -30,4 +30,27 @@ document.addEventListener('DOMContentLoaded', () => {
             }, 300);
         });
     }
+
+    // Add Scroll to Top button
+    const scrollTopBtn = document.createElement('button');
+    scrollTopBtn.id = 'scroll-to-top';
+    scrollTopBtn.className = 'scroll-to-top';
+    scrollTopBtn.innerHTML = '↑';
+    scrollTopBtn.setAttribute('aria-label', 'Scroll to top');
+    document.body.appendChild(scrollTopBtn);
+
+    window.addEventListener('scroll', () => {
+        if (window.scrollY > 300) {
+            scrollTopBtn.classList.add('visible');
+        } else {
+            scrollTopBtn.classList.remove('visible');
+        }
+    });
+
+    scrollTopBtn.addEventListener('click', () => {
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth'
+        });
+    });
 });
