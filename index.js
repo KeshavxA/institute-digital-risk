@@ -6,7 +6,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const handleScroll = () => {
         const scrollY = window.scrollY;
-        
+
         // Header styling
         if (scrollY > 50) {
             header.classList.add('scrolled');
@@ -140,9 +140,9 @@ document.addEventListener('DOMContentLoaded', () => {
         courseData.forEach(course => {
             const card = document.createElement('div');
             card.className = 'card course-card reveal';
-            
+
             const tagsHtml = course.tags.map(tag => `<span class="course-tag">${tag}</span>`).join('');
-            
+
             card.innerHTML = `
                 <div class="course-tags">${tagsHtml}</div>
                 <h3>${course.title}</h3>
@@ -159,7 +159,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const syllabusModal = document.getElementById('syllabus-modal');
     const enrollmentModal = document.getElementById('enrollment-modal');
-    
+
     document.querySelectorAll('.close-btn').forEach(btn => {
         btn.addEventListener('click', (e) => {
             e.target.closest('.modal-overlay').classList.add('hidden');
@@ -184,7 +184,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     syllabusModal.classList.remove('hidden');
                 }
             }
-            
+
             if (e.target.classList.contains('enroll-btn')) {
                 const courseId = e.target.getAttribute('data-id');
                 const course = courseData.find(c => c.id === courseId);
@@ -287,4 +287,25 @@ document.addEventListener('DOMContentLoaded', () => {
     if (communitySection) {
         statsObserver.observe(communitySection);
     }
+
+    const faqItems = document.querySelectorAll('.faq-item');
+    faqItems.forEach(item => {
+        const questionBtn = item.querySelector('.faq-question');
+        questionBtn.addEventListener('click', () => {
+
+            const isActive = item.classList.contains('active');
+
+            faqItems.forEach(otherItem => {
+                otherItem.classList.remove('active');
+                const otherAnswer = otherItem.querySelector('.faq-answer');
+                if (otherAnswer) otherAnswer.style.maxHeight = null;
+            });
+
+            if (!isActive) {
+                item.classList.add('active');
+                const answer = item.querySelector('.faq-answer');
+
+            }
+        });
+    });
 });
