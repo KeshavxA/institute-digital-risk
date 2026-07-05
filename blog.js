@@ -21,27 +21,86 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     ];
 
-    // Logic for blog.html: Render the grid of cards
+    // Logic for blog.html: Render the grid of cards with search and filter
     const blogGrid = document.getElementById('blog-grid');
+    const searchInput = document.getElementById('blog-search');
+    const categoryFiltersContainer = document.getElementById('category-filters');
+
     if (blogGrid) {
-        blogCatalog.forEach(article => {
-            const card = document.createElement('div');
-            card.className = 'card blog-card reveal active visible';
-            card.style.opacity = '1';
-            card.style.transform = 'translateY(0)';
+        let activeCategory = 'All';
+        let searchQuery = '';
+
+        // Extract unique categories
+        const categories = ['All', ...new Set(blogCatalog.map(article => article.category))];
+
+        // Inject category filter buttons
+        if (categoryFiltersContainer) {
+            categoryFiltersContainer.innerHTML = '';
+            categories.forEach(cat => {
+                const btn = document.createElement('button');
+                btn.className = `filter-btn ${cat === 'All' ? 'active' : ''}`;
+                btn.textContent = cat;
+                btn.dataset.category = cat;
+                
+                btn.addEventListener('click', () => {
+                    // Update active state
+                    document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+                    btn.classList.add('active');
+                    
+                    activeCategory = cat;
+                    renderBlogGrid();
+                });
+                
+                categoryFiltersContainer.appendChild(btn);
+            });
+        }
+
+        // Search input listener
+        if (searchInput) {
+            searchInput.addEventListener('input', (e) => {
+                searchQuery = e.target.value.toLowerCase();
+                renderBlogGrid();
+            });
+        }
+
+        const renderBlogGrid = () => {
+            blogGrid.innerHTML = '';
             
-            card.innerHTML = `
-                <div class="blog-meta">
-                    <span class="blog-category">${article.category}</span>
-                    <span>${article.readTime}</span>
-                </div>
-                <h3>${article.title}</h3>
-                <p>${article.excerpt}</p>
-                <div style="margin-top: 1rem; font-size: 0.85rem; color: var(--text-gray);">${article.date}</div>
-                <a href="article.html?id=${article.id}" class="btn btn-secondary btn-block">Read Article</a>
-            `;
-            blogGrid.appendChild(card);
-        });
+            // Filter catalog
+            const filteredCatalog = blogCatalog.filter(article => {
+                const matchesCategory = activeCategory === 'All' || article.category === activeCategory;
+                const matchesSearch = article.title.toLowerCase().includes(searchQuery) || 
+                                      article.excerpt.toLowerCase().includes(searchQuery);
+                return matchesCategory && matchesSearch;
+            });
+
+            if (filteredCatalog.length === 0) {
+                blogGrid.innerHTML = '<div style="grid-column: 1 / -1; text-align: center; padding: 2rem;">No insights found matching your criteria.</div>';
+                return;
+            }
+
+            filteredCatalog.forEach(article => {
+                const card = document.createElement('div');
+                card.className = 'card blog-card reveal active visible';
+                card.style.opacity = '1';
+                card.style.transform = 'translateY(0)';
+                
+                card.innerHTML = `
+                    <div class="blog-meta">
+                        <span class="blog-category">${article.category}</span>
+                        <span>${article.readTime}</span>
+                    </div>
+                    <h3>${article.title}</h3>
+                    <p>${article.excerpt}</p>
+                    <div style="margin-top: 1rem; font-size: 0.85rem; color: var(--text-gray);">${article.date}</div>
+                    <a href="article.html?id=${article.id}" class="btn btn-secondary btn-block">Read Article</a>
+                `;
+                blogGrid.appendChild(card);
+            });
+        };
+
+        // Initial render
+        renderBlogGrid();
     }
 
     // Logic for article.html: Fetch and render markdown
