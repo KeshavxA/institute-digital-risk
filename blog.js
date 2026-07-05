@@ -120,8 +120,44 @@ document.addEventListener('DOMContentLoaded', () => {
                     <span>${metadata.date}</span>
                     <span>${metadata.readTime}</span>
                 </div>
+                <div class="social-share">
+                    <span style="font-size: 0.9rem; color: var(--text-gray); margin-right: 0.5rem;">Share:</span>
+                    <button class="share-btn twitter-share" aria-label="Share on X" data-url="${encodeURIComponent(window.location.href)}" data-title="${encodeURIComponent(metadata.title)}">𝕏</button>
+                    <button class="share-btn linkedin-share" aria-label="Share on LinkedIn" data-url="${encodeURIComponent(window.location.href)}">in</button>
+                    <button class="share-btn copy-link-share" aria-label="Copy Link" data-url="${window.location.href}">🔗</button>
+                </div>
                 <!-- Title is handled by the markdown H1, but we could inject it here -->
             `;
+
+            // Attach event listeners for share buttons
+            const twBtn = articleHeader.querySelector('.twitter-share');
+            if (twBtn) {
+                twBtn.addEventListener('click', (e) => {
+                    const url = e.currentTarget.getAttribute('data-url');
+                    const title = e.currentTarget.getAttribute('data-title');
+                    window.open(`https://twitter.com/intent/tweet?url=${url}&text=${title}`, '_blank', 'width=600,height=400');
+                });
+            }
+
+            const inBtn = articleHeader.querySelector('.linkedin-share');
+            if (inBtn) {
+                inBtn.addEventListener('click', (e) => {
+                    const url = e.currentTarget.getAttribute('data-url');
+                    window.open(`https://www.linkedin.com/sharing/share-offsite/?url=${url}`, '_blank', 'width=600,height=400');
+                });
+            }
+
+            const copyBtn = articleHeader.querySelector('.copy-link-share');
+            if (copyBtn) {
+                copyBtn.addEventListener('click', (e) => {
+                    const url = e.currentTarget.getAttribute('data-url');
+                    navigator.clipboard.writeText(url).then(() => {
+                        const originalText = copyBtn.innerHTML;
+                        copyBtn.innerHTML = '✓';
+                        setTimeout(() => { copyBtn.innerHTML = originalText; }, 2000);
+                    });
+                });
+            }
         }
 
         // Fetch the markdown file
