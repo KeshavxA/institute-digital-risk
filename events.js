@@ -43,6 +43,56 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     ];
 
+    // Countdown Timer Logic
+    const countdownContainer = document.getElementById('countdown-container');
+    if (countdownContainer) {
+        // Find the next upcoming event
+        const now = new Date().getTime();
+        let nextEvent = null;
+        
+        for (const event of eventsData) {
+            const eventTime = new Date(event.startISO).getTime();
+            if (eventTime > now) {
+                if (!nextEvent || eventTime < new Date(nextEvent.startISO).getTime()) {
+                    nextEvent = event;
+                }
+            }
+        }
+
+        if (nextEvent) {
+            countdownContainer.style.display = 'inline-block';
+            const targetDate = new Date(nextEvent.startISO).getTime();
+            
+            const daysSpan = document.getElementById('countdown-days');
+            const hoursSpan = document.getElementById('countdown-hours');
+            const minsSpan = document.getElementById('countdown-minutes');
+            const secsSpan = document.getElementById('countdown-seconds');
+
+            const updateCountdown = () => {
+                const currentTime = new Date().getTime();
+                const distance = targetDate - currentTime;
+                
+                if (distance < 0) {
+                    countdownContainer.innerHTML = '<h3 style="color: var(--primary);">Event is starting now!</h3>';
+                    return;
+                }
+                
+                const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+                const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+                const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+                
+                if (daysSpan) daysSpan.textContent = days.toString().padStart(2, '0');
+                if (hoursSpan) hoursSpan.textContent = hours.toString().padStart(2, '0');
+                if (minsSpan) minsSpan.textContent = minutes.toString().padStart(2, '0');
+                if (secsSpan) secsSpan.textContent = seconds.toString().padStart(2, '0');
+            };
+            
+            updateCountdown(); // initial call
+            setInterval(updateCountdown, 1000);
+        }
+    }
+
     // Calendar Link Generators
     const generateGoogleCalUrl = (event) => {
         const start = event.startISO.replace(/[-:]/g, '').replace(/\.\d{3}/, '');
