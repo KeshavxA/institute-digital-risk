@@ -1,7 +1,5 @@
 document.addEventListener('DOMContentLoaded', () => {
 
-    // Define the blog catalog data
-    // In a real headless CMS, this would be fetched from an API
     const blogCatalog = [
         {
             id: 'future-of-digital-risk',
@@ -21,7 +19,6 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     ];
 
-    // Logic for blog.html: Render the grid of cards with search and filter
     const blogGrid = document.getElementById('blog-grid');
     const searchInput = document.getElementById('blog-search');
     const categoryFiltersContainer = document.getElementById('category-filters');
@@ -30,10 +27,8 @@ document.addEventListener('DOMContentLoaded', () => {
         let activeCategory = 'All';
         let searchQuery = '';
 
-        // Extract unique categories
         const categories = ['All', ...new Set(blogCatalog.map(article => article.category))];
 
-        // Inject category filter buttons
         if (categoryFiltersContainer) {
             categoryFiltersContainer.innerHTML = '';
             categories.forEach(cat => {
@@ -41,21 +36,19 @@ document.addEventListener('DOMContentLoaded', () => {
                 btn.className = `filter-btn ${cat === 'All' ? 'active' : ''}`;
                 btn.textContent = cat;
                 btn.dataset.category = cat;
-                
+
                 btn.addEventListener('click', () => {
-                    // Update active state
+
                     document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
                     btn.classList.add('active');
-                    
+
                     activeCategory = cat;
                     renderBlogGrid();
                 });
-                
+
                 categoryFiltersContainer.appendChild(btn);
             });
         }
-
-        // Search input listener
         if (searchInput) {
             searchInput.addEventListener('input', (e) => {
                 searchQuery = e.target.value.toLowerCase();
@@ -65,12 +58,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
         const renderBlogGrid = () => {
             blogGrid.innerHTML = '';
-            
+
             // Filter catalog
             const filteredCatalog = blogCatalog.filter(article => {
                 const matchesCategory = activeCategory === 'All' || article.category === activeCategory;
-                const matchesSearch = article.title.toLowerCase().includes(searchQuery) || 
-                                      article.excerpt.toLowerCase().includes(searchQuery);
+                const matchesSearch = article.title.toLowerCase().includes(searchQuery) ||
+                    article.excerpt.toLowerCase().includes(searchQuery);
                 return matchesCategory && matchesSearch;
             });
 
@@ -84,7 +77,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 card.className = 'card blog-card reveal active visible';
                 card.style.opacity = '1';
                 card.style.transform = 'translateY(0)';
-                
+
                 card.innerHTML = `
                     <div class="blog-meta">
                         <span class="blog-category">${article.category}</span>
@@ -106,7 +99,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // Logic for article.html: Fetch and render markdown
     const articleContent = document.getElementById('article-content');
     const articleHeader = document.getElementById('article-header');
-    
+
     if (articleContent) {
         // Parse URL parameters
         const urlParams = new URLSearchParams(window.location.search);
