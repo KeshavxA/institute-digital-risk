@@ -57,7 +57,10 @@
             </div>
             <div class="form-group">
                 <label for="login-password">Password</label>
-                <input type="password" id="login-password" name="password" placeholder="••••••••" required>
+                <div class="password-wrapper" style="position: relative;">
+                    <input type="password" id="login-password" name="password" placeholder="••••••••" required style="padding-right: 40px;">
+                    <button type="button" id="toggle-password" aria-label="Toggle Password Visibility" style="position: absolute; right: 10px; top: 50%; transform: translateY(-50%); background: none; border: none; cursor: pointer; font-size: 1.2rem; color: var(--text-gray);">👁️</button>
+                </div>
             </div>
             <button type="submit" class="btn btn-primary btn-block">Sign In</button>
         </form>
@@ -68,6 +71,16 @@
     </div>
 
     <script>
+        const togglePassword = document.getElementById('toggle-password');
+        const passwordInput = document.getElementById('login-password');
+        if (togglePassword && passwordInput) {
+            togglePassword.addEventListener('click', () => {
+                const type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
+                passwordInput.setAttribute('type', type);
+                togglePassword.textContent = type === 'password' ? '👁️' : '🙈';
+            });
+        }
+
         document.getElementById('login-form').addEventListener('submit', (e) => {
             e.preventDefault();
             const btn = e.target.querySelector('button');
