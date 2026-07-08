@@ -73,6 +73,16 @@
     box-sizing: border-box;
 }
 
+/* Accessibility Focus Rings */
+*:focus:not(:focus-visible) {
+    outline: none;
+}
+
+*:focus-visible {
+    outline: 3px solid var(--primary);
+    outline-offset: 3px;
+}
+
 html {
     scroll-behavior: smooth;
     scroll-padding-top: 100px;
