@@ -152,12 +152,31 @@ document.addEventListener('DOMContentLoaded', () => {
                 copyBtn.addEventListener('click', (e) => {
                     const url = e.currentTarget.getAttribute('data-url');
                     navigator.clipboard.writeText(url).then(() => {
+                        showToast('Link Copied to Clipboard!');
                         const originalText = copyBtn.innerHTML;
                         copyBtn.innerHTML = '✓';
                         setTimeout(() => { copyBtn.innerHTML = originalText; }, 2000);
                     });
                 });
             }
+        }
+
+        // Helper function for Toast Notification
+        function showToast(message) {
+            let toast = document.getElementById('toast-notification');
+            if (!toast) {
+                toast = document.createElement('div');
+                toast.id = 'toast-notification';
+                toast.className = 'toast-notification';
+                document.body.appendChild(toast);
+            }
+            toast.textContent = message;
+            toast.classList.add('show');
+            
+            // Remove the toast after 3 seconds
+            setTimeout(() => {
+                toast.classList.remove('show');
+            }, 3000);
         }
 
         // Fetch the markdown file
