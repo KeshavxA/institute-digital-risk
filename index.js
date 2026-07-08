@@ -44,6 +44,43 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
+    // Typing Animation for Hero Text
+    const typingElement = document.querySelector('.typing-text');
+    if (typingElement) {
+        const words = ["Digital Risk", "Cybersecurity", "Compliance", "Innovation"];
+        let wordIndex = 0;
+        let charIndex = words[0].length; // Start with the first word already typed
+        let isDeleting = true; // Start by pausing then deleting
+        let typingSpeed = 2000;
+        
+        function type() {
+            const currentWord = words[wordIndex];
+            
+            if (isDeleting) {
+                typingElement.textContent = currentWord.substring(0, charIndex - 1);
+                charIndex--;
+                typingSpeed = 50;
+            } else {
+                typingElement.textContent = currentWord.substring(0, charIndex + 1);
+                charIndex++;
+                typingSpeed = 120; // Type slightly faster
+            }
+            
+            if (!isDeleting && charIndex === currentWord.length) {
+                typingSpeed = 2000; // Pause at the end of word
+                isDeleting = true;
+            } else if (isDeleting && charIndex === 0) {
+                isDeleting = false;
+                wordIndex = (wordIndex + 1) % words.length;
+                typingSpeed = 500; // Pause before typing next word
+            }
+            
+            setTimeout(type, typingSpeed);
+        }
+        
+        setTimeout(type, typingSpeed); // Initial delay
+    }
+
     // Real-time Form Validation
     const setupRealTimeValidation = (form) => {
         if (!form) return;

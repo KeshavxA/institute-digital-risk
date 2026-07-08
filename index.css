@@ -320,6 +320,21 @@ nav {
     line-height: 1;
 }
 
+.typing-cursor {
+    display: inline-block;
+    width: 4px;
+    height: 0.9em;
+    background-color: var(--primary);
+    margin-left: 5px;
+    animation: blink 1s step-end infinite;
+    vertical-align: text-bottom;
+}
+
+@keyframes blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0; }
+}
+
 .hero-content p {
     max-width: 600px;
     margin-bottom: 3rem;
