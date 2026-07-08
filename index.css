@@ -339,6 +339,77 @@ section {
     padding: 10rem 0;
 }
 
+/* Trusted By Marquee */
+.trusted-section {
+    padding: 3rem 0;
+    border-bottom: 1px solid var(--glass-border);
+    overflow: hidden;
+}
+
+.trusted-label {
+    text-align: center;
+    font-size: 0.8rem;
+    font-weight: 600;
+    letter-spacing: 2px;
+    color: var(--text-gray);
+    margin-bottom: 2rem;
+}
+
+.marquee-container {
+    width: 100%;
+    overflow: hidden;
+    position: relative;
+}
+
+/* Gradient fade on edges */
+.marquee-container::before,
+.marquee-container::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    width: 150px;
+    height: 100%;
+    z-index: 2;
+}
+
+.marquee-container::before {
+    left: 0;
+    background: linear-gradient(to right, var(--black), transparent);
+}
+
+.marquee-container::after {
+    right: 0;
+    background: linear-gradient(to left, var(--black), transparent);
+}
+
+.marquee-track {
+    display: flex;
+    width: max-content;
+    animation: marquee 25s linear infinite;
+}
+
+.partner-logo {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--text-gray);
+    opacity: 0.5;
+    margin: 0 3rem;
+    padding: 0.5rem 1rem;
+    white-space: nowrap;
+    transition: var(--transition);
+    cursor: default;
+}
+
+.partner-logo:hover {
+    opacity: 1;
+    color: var(--white);
+}
+
+@keyframes marquee {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+}
+
 /* About Section */
 .about-section {
     background: var(--black-light);
