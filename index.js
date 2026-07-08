@@ -4,8 +4,20 @@ document.addEventListener('DOMContentLoaded', () => {
     const navLinks = document.querySelector('.nav-links');
     const registrationForm = document.getElementById('registration-form');
 
+    let lastScrollY = window.scrollY;
+
     const handleScroll = () => {
         const scrollY = window.scrollY;
+
+        // Smart Header Auto-Hide
+        if (scrollY > lastScrollY && scrollY > 100) {
+            // Scrolling down
+            header.classList.add('header-hidden');
+        } else {
+            // Scrolling up
+            header.classList.remove('header-hidden');
+        }
+        lastScrollY = scrollY;
 
         // Header styling
         if (scrollY > 50) {

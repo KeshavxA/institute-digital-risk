@@ -239,6 +239,10 @@ header.scrolled {
     border-bottom: 1px solid var(--glass-border);
 }
 
+header.header-hidden {
+    transform: translateY(-100%);
+}
+
 nav {
     display: flex;
     justify-content: space-between;
